@@ -1,8 +1,6 @@
 <template>
   <div>
-	<div id="app">
-		<homeHeader/>
-	</div>
+    <homeHeader/>
   <middleIcon/>
     <preview/>
   </div>

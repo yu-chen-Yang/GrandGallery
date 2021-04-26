@@ -7,6 +7,9 @@
       <el-col :span="2"><div v-on:click="activate3" v-bind:style="color3" style="cursor: pointer" @mouseenter="mouse3in" @mouseleave="mouse3out">组图</div><div v-bind:style="opacity3" style="color: #0099E5;font-weight: 900">____</div></el-col>
       <el-col :span="2"><div v-on:click="activate4" v-bind:style="color4" style="cursor: pointer" @mouseenter="mouse4in" @mouseleave="mouse4out">图文</div><div v-bind:style="opacity4" style="color: #0099E5;font-weight: 900">____</div></el-col>
     </el-row>
+    <div class="cardArea">
+      test
+    </div>
   </div>
 </template>
 
@@ -139,5 +142,10 @@ export default {
 <style scoped>
 .card{
   margin-top: 10%;
+}
+.cardArea{
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
 	<div class="header">
-    <div class="menubar" >
+        <div class="menubar" >
       <ul>
         <li class="li">
           <el-dropdown>
-          <span class="el-dropdown-link" style="color: white; font-size: 18px">
+          <span class="el-dropdown-link" style="color: white; font-size: 1em">
               发现好图<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
@@ -16,7 +16,7 @@
         </el-dropdown></li>
         <li class="hidden">***</li>
         <li class="li"><el-dropdown>
-          <span class="el-dropdown-link" style="color: white; font-size: 18px">
+          <span class="el-dropdown-link" style="color: white; font-size: 1em">
               摄影师<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
@@ -31,10 +31,13 @@
         <li class="li">售图</li>
 
         <li class="hidden">******</li>
-        <li class="li"><el-button type="primary" size="small">注册</el-button></li>
       </ul>
     </div>
-    <p class="li2">登陆</p>
+    <div class="righted">
+      <div class="li2">登陆</div>
+      <div class="hidden">**</div>
+      <el-button type="primary" size="small">注册</el-button>
+    </div>
     <div class="carousel">
 		<el-carousel :interval="3000" height="500pt" arrow="never">
 			<el-carousel-item v-for="item in images" v-bind:key="item.id">
@@ -105,9 +108,8 @@
 	}
 </script>
 <style>
-
 .li{
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 200;
   color: white;
   position: relative;
@@ -117,12 +119,16 @@
   line-height: 1.25;
   letter-spacing: normal;
 }
+.righted{
+  margin-top: -3.5%;
+  margin-left: 80%;
+  z-index: 9999;
+  position: relative;
+}
 .li2{
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 200;
   color: white;
-  right: 10%;
-  position: fixed;
   cursor: pointer;
   list-style: none;
   display: inline;
@@ -130,27 +136,25 @@
   letter-spacing: normal;
 }
 .hidden{
-  font-size: 18px;
+  font-size: 1.3em;
   font-weight: 400;
   color: white;
   opacity: 0;
   position: relative;
-  cursor: pointer;
   list-style: none;
   display: inline;
   line-height: 1.25;
   letter-spacing: normal;
 }
 .menubar{
-  margin-top: 120px;
-  margin-left: 50px;
-  position: absolute;
+  margin-top: 0%;
+  margin-left: 8%;
+  position: relative;
   z-index: 9999;
 }
 	.carousel {
-		margin-top: -170px;
-		margin-left: -10px;
-		margin-right: -10px;
+    position: relative;
+    margin-top: -10%;
 		text-align: center;
 	}
 	.test {
