@@ -8,14 +8,16 @@
       <el-col :span="2"><div v-on:click="activate4" v-bind:style="color4" style="cursor: pointer" @mouseenter="mouse4in" @mouseleave="mouse4out">图文</div><div v-bind:style="opacity4" style="color: #0099E5;font-weight: 900">____</div></el-col>
     </el-row>
     <div class="cardArea">
-      test
+      <hot/>
     </div>
   </div>
 </template>
 
 <script>
+import hot from "./card/hot.vue"
 export default {
   name: "preview",
+  components:{hot},
   data:()=>({
     color1:{
       color:'#0099E5',
@@ -137,6 +139,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <style scoped>
@@ -147,5 +151,6 @@ export default {
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
+  text-align: center;
 }
 </style>

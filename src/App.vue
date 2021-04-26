@@ -1,30 +1,36 @@
 <template>
-  <div>
-    <homeHeader/>
-  <middleIcon/>
+  <div class="app">
+    <homeheader/>
+    <middle-icon />
     <preview/>
   </div>
 </template>
 
 <script>
-	import homeHeader from './components/homepage/header.vue'
-  import middleIcon from './components/homepage/middleIcon.vue'
-  import preview from "./components/homepage/preview";
-	export default {
-		name: 'App',
-		components: {middleIcon,
-      homeHeader,
-      // eslint-disable-next-line vue/no-unused-components
-      preview
-		}
-	}
+import homeheader from "./components/homepage/header";
+import middleIcon from "./components/homepage/middleIcon";
+import preview from "./components/homepage/preview";
+export default {
+  name: 'LayoutDefault',
+  components: {
+    homeheader,middleIcon,preview
+  },
+
+  data () {
+    return {
+      leftDrawerOpen: false
+    }
+  },
+  watch:{
+    app: function(){
+      return{
+        height:document.documentElement.clientHeight,
+        width:document.documentElement.clientWidth,
+      }
+    }
+  }
+}
 </script>
 
 <style>
-	#app {
-		font-family: Avenir, Helvetica, Arial, sans-serif;
-		text-align: center;
-		color: #2c3e50;
-		margin-top: 60px;
-	}
 </style>
