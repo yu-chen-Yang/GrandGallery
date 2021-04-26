@@ -29,13 +29,12 @@
         <li class="li">活动</li>
         <li class="hidden">***</li>
         <li class="li">售图</li>
-        <li class="hidden">*************************************************************************************</li>
-        <li class="hidden">******************</li>
-        <li class="li">登陆</li>
+
         <li class="hidden">******</li>
         <li class="li"><el-button type="primary" size="small">注册</el-button></li>
       </ul>
     </div>
+    <p class="li2">登陆</p>
     <div class="carousel">
 		<el-carousel :interval="3000" height="500pt" arrow="never">
 			<el-carousel-item v-for="item in images" v-bind:key="item.id">
@@ -112,6 +111,18 @@
   font-weight: 200;
   color: white;
   position: relative;
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+  line-height: 1.25;
+  letter-spacing: normal;
+}
+.li2{
+  font-size: 18px;
+  font-weight: 200;
+  color: white;
+  right: 10%;
+  position: fixed;
   cursor: pointer;
   list-style: none;
   display: inline;
