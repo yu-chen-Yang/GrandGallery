@@ -4,16 +4,20 @@
 		<homeHeader/>
 	</div>
   <middleIcon/>
+    <preview/>
   </div>
 </template>
 
 <script>
 	import homeHeader from './components/homepage/header.vue'
   import middleIcon from './components/homepage/middleIcon.vue'
+  import preview from "./components/homepage/preview";
 	export default {
 		name: 'App',
 		components: {middleIcon,
-      homeHeader
+      homeHeader,
+      // eslint-disable-next-line vue/no-unused-components
+      preview
 		}
 	}
 </script>
