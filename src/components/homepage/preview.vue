@@ -1,12 +1,14 @@
 <template>
+  <div>
   <div class="card">
     <el-row>
       <el-col :span="8"><div style="opacity: 0" >1</div></el-col>
-      <el-col :span="2"><div v-on:click="activate1" v-bind:style="color1" style="font-size: 1.5rem; cursor: pointer" @mouseenter="mouse1in" @mouseleave="mouse1out">热门</div><div v-bind:style="opacity1" style="color: #0099E5;font-size: 1.5rem">____</div></el-col>
-      <el-col :span="2"><div v-on:click="activate2" v-bind:style="color2" style="font-size: 1.5rem; cursor: pointer" @mouseenter="mouse2in" @mouseleave="mouse2out">推荐</div><div v-bind:style="opacity2" style="color: #0099E5;font-size: 1.5rem">____</div></el-col>
-      <el-col :span="2"><div v-on:click="activate3" v-bind:style="color3" style="font-size: 1.5rem; cursor: pointer" @mouseenter="mouse3in" @mouseleave="mouse3out">组图</div><div v-bind:style="opacity3" style="color: #0099E5;font-size: 1.5rem">____</div></el-col>
-      <el-col :span="2"><div v-on:click="activate4" v-bind:style="color4" style="font-size: 1.5rem; cursor: pointer" @mouseenter="mouse4in" @mouseleave="mouse4out">图文</div><div v-bind:style="opacity4" style="color: #0099E5;font-size: 1.5rem">____</div></el-col>
+      <el-col :span="2"><div v-on:click="activate1" v-bind:style="color1" style="font-size: 1.2rem; cursor: pointer; font-weight: 900; font-family: Arial;" @mouseenter="mouse1in" @mouseleave="mouse1out" >热门</div><div v-bind:style="opacity1" style="color: #0099E5;font-size: 1.2rem; font-weight: 900; font-family: Arial;" >___</div></el-col>
+      <el-col :span="2"><div v-on:click="activate2" v-bind:style="color2" style="font-size: 1.2rem; cursor: pointer; font-weight: 900; font-family: Arial;" @mouseenter="mouse2in" @mouseleave="mouse2out">推荐</div><div v-bind:style="opacity2" style="color: #0099E5;font-size: 1.2rem;  font-weight: 900; font-family: Arial;">___</div></el-col>
+      <el-col :span="2"><div v-on:click="activate3" v-bind:style="color3" style="font-size: 1.2rem; cursor: pointer; font-weight: 900; font-family: Arial;" @mouseenter="mouse3in" @mouseleave="mouse3out">组图</div><div v-bind:style="opacity3" style="color: #0099E5;font-size: 1.2rem;  font-weight: 900; font-family: Arial;">___</div></el-col>
+      <el-col :span="2"><div v-on:click="activate4" v-bind:style="color4" style="font-size: 1.2rem; cursor: pointer; font-weight: 900; font-family: Arial;" @mouseenter="mouse4in" @mouseleave="mouse4out">图文</div><div v-bind:style="opacity4" style="color: #0099E5;font-size: 1.2rem;  font-weight: 900; font-family: Arial;">___</div></el-col>
     </el-row>
+  </div>
     <div class="cardArea">
       <hot/>
     </div>
@@ -146,6 +148,8 @@ export default {
 <style scoped>
 .card{
   margin-top: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .cardArea{
   margin-top: 3%;
