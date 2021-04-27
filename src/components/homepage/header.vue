@@ -160,7 +160,7 @@
 }
 	.carousel {
     position: relative;
-    margin-top: -3%;
+    margin-top: -4%;
 		text-align: center;
     z-index: 100;
 	}

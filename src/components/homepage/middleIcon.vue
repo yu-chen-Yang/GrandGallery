@@ -59,9 +59,10 @@ export default {
 .sentence{
   margin-top: 10%;
   text-align: center;
-  font-size: 3rem;
-  color: black;
+  font-size: 2rem;
+  color: grey;
   font-family: "Microsoft Sans Serif";
+  font-weight: 700;
 }
 .icons{
   position: relative;
