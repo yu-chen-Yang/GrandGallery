@@ -181,7 +181,7 @@
 		z-index: 9999;
 	}
   .header{
-    margin-bottom: 23rem;
+    margin-bottom: 18%;
   }
 
 	.signIn {
