@@ -4,9 +4,6 @@
         <pic v-bind:width="item.width" v-bind:picscr="item.test" v-bind:ht="ht" v-bind:id="item.id" v-bind:sentence="item.sentence"/>
     </div>
     <br/>
-    <q-img :src="test6" style="max-width: 30%;" class="cd" v-bind:height=ht />
-    <q-img :src="test7" style="max-width: 40%;" class="cd" v-bind:height=ht />
-    <q-img :src="test8" style="max-width: 30%;" class="cd" v-bind:height=ht />
   </div>
 </template>
 
@@ -29,7 +26,8 @@ export default {
       {test: require('@/assets/hot/7.png'),id:7,width: "40%",sentence:"新娘"},
       {test: require('@/assets/hot/8.png'),id:8,width: "30%",sentence:"mechanical"}],
     width: document.documentElement.clientWidth,
-    ht: document.documentElement.clientHeight*0.55+'px'
+    ht: document.documentElement.clientHeight*0.55+'px',
+    video: require('@/assets/1.mp4')
   }),
   mounted:{
     ishide:function(){

@@ -39,19 +39,11 @@
       <el-button type="primary">注册</el-button>
     </div>
     <div class="carousel">
-		<el-carousel :interval="3000" v-bind:height=windowHeight arrow="never">
-			<el-carousel-item v-for="item in images" v-bind:key="item.id">
-        <el-image
-            :src="item.src"
-            :fit="fit"/>
-			</el-carousel-item>
-			<transition name='el-zoom-in-center'>
-			</transition>
-		</el-carousel>
+      <video muted v-bind:src="video" v-bind:controls="false" autoplay="autoplay" loop="loop" width="100%"></video>
 
     </div>
     <div class="signIn" v-show="show">
-      <p class="test">让美好被记录！</p>
+      <p class="test">Every single moment is unexperienced</p>
       <el-button type="primary" class="button1" style="font-weight:900; color: white;">现在加入</el-button>
     </div>
 
@@ -86,6 +78,7 @@
           id:5,
           src: require('@/assets/home/3.png')
         }],
+      video: require('@/assets/video/final.mp4'),
       windowHeight: document.documentElement.clientHeight*0.75+"px",
       windowWidth: "",
     }),
@@ -185,7 +178,7 @@
   }
 
 	.signIn {
-    margin-top: -25%;
+    margin-top: -35%;
 		text-align: center;
 	}
 </style>
