@@ -26,8 +26,7 @@ export default {
       {test: require('@/assets/hot/7.png'),id:7,width: "40%",sentence:"新娘"},
       {test: require('@/assets/hot/8.png'),id:8,width: "30%",sentence:"mechanical"}],
     width: document.documentElement.clientWidth,
-    ht: document.documentElement.clientHeight*0.55+'px',
-    video: require('@/assets/1.mp4')
+    ht: document.documentElement.clientHeight*0.55+'px'
   }),
   mounted:{
     ishide:function(){
