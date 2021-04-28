@@ -16,7 +16,8 @@ GrandGallery is a platform for photographers. You can share your photos with oth
 <img width="1434" alt="Screen Shot 2021-04-28 at 8 38 13 PM" src="https://user-images.githubusercontent.com/43241952/116406893-bc575200-a863-11eb-9a00-c83c85aacb2d.png">
 
 
-The style is based on 500px and the video at the homepage is from Sony A1 promotion video. You can download it and put it to src/assets/video. Here is the link:
+* The style is based on 500px. 
+* The video at the homepage is from Sony A1 promotion video. You can download it and put it to src/assets/video. Here is the link:
 
 
 
