@@ -43,15 +43,21 @@
       </div>
     </el-col>
   </el-row>
-  <div class="sentence">
-  <p>用尼康，让大菠萝开心！开了又开。</p>
+
+  <div class="sentence" >
+  <p> 用尼康，让大菠萝开心！开了又开。</p>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: "middle-icon"
+  name: "middle-icon",
+  methods:{
+    tosignIn:function (){
+      this.$router.push({name:'signIn'});
+    }
+  }
 }
 </script>
 

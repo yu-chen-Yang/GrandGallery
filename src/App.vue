@@ -1,19 +1,13 @@
 <template>
   <div class="app">
-    <homeheader/>
-    <middle-icon />
-    <preview/>
+   <router-view/>
   </div>
 </template>
 
 <script>
-import homeheader from "./components/homepage/header";
-import middleIcon from "./components/homepage/middleIcon";
-import preview from "./components/homepage/preview";
 export default {
   name: 'LayoutDefault',
   components: {
-    homeheader,middleIcon,preview
   },
 
   data () {

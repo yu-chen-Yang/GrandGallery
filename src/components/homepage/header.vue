@@ -34,13 +34,21 @@
       </ul>
     </div>
     <div class="righted">
-      <div class="li2">登陆</div>
-      <div class="hide">***</div>
-      <el-button type="primary">注册</el-button>
+      <div v-if="isLogin">
+        <q-avatar>
+          <img :src=avatarSrc>
+        </q-avatar>
+        <div class="hide">***</div>
+        <div class="li3">{{username}}</div>
+      </div>
+      <div v-else>
+        <div class="li2" v-on:click="toSignIn">登陆</div>
+        <div class="hide">***</div>
+        <el-button type="primary" v-on:click="toSignIn">注册</el-button>
+      </div>
     </div>
     <div class="carousel">
       <video muted v-bind:src="video" v-bind:controls="false" autoplay="autoplay" loop="loop" width="100%"></video>
-
     </div>
     <div class="signIn" v-show="show">
       <p class="test">Every single moment is unexperienced</p>
@@ -51,10 +59,21 @@
 </template>
 
 <script>
+import Router from 'vue-router';
+import Vue from 'vue'
+Vue.use(Router)
 	export default {
-		name: 'homeHeader',
+  props:{
+    userid:Number,
+    isLogin:Boolean,
+    username:String,
+    userTitle:String,
+    level:Number,
+  },
+		name: 'homeheader',
 		data: () => ({
 			show: false,
+      avatarSrc: require("@/assets/cursorPineapple.png"),
 			images: [
         {
         // eslint-disable-next-line no-mixed-spaces-and-tabs
@@ -92,6 +111,9 @@
       setImg:function (){
         // eslint-disable-next-line no-mixed-spaces-and-tabs
         console.log(111);return this.windowHeight*0.6;
+      },
+      toSignIn:function (){
+        this.$router.push({name:'signIn'})
       }
 		},
     watch: {
@@ -125,6 +147,18 @@
 }
 .li2{
   font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+  line-height: 1.25;
+  letter-spacing: normal;
+}
+.li3{
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
   font-weight: 600;
   color: white;
   position: relative;
@@ -168,7 +202,6 @@
 	.button1 {
 		font-weight: 200;
     position: relative;
-    margin-left: 50%;
     margin-top: -5px;
 		color: #2C3E50;
 		z-index: 9999;
