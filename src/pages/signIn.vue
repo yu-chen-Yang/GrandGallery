@@ -16,18 +16,6 @@ export default {
     id:"",
     pwd:""
   }),
-  methods:{
-    checkLogin:function(){
-      axios.get('/usr',{
-        params:{
-          id:this.id,
-          pwd:this.pwd,
-        }
-      }).then(function (response){
-
-      })
-    }
-  }
 }
 
 </script>

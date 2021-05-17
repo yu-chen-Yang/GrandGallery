@@ -72,7 +72,7 @@ export default {
 }
 .icons{
   position: relative;
-  margin-top: 3rem;
+  margin-top: 20%;
   color: 	#696969;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-        <div class="menubar" >
+    <div class="menubar" >
       <ul>
         <li class="li">
           <el-dropdown>
@@ -34,18 +34,9 @@
       </ul>
     </div>
     <div class="righted">
-      <div v-if="isLogin">
-        <q-avatar>
-          <img :src=avatarSrc>
-        </q-avatar>
-        <div class="hide">***</div>
-        <div class="li3">{{username}}</div>
-      </div>
-      <div v-else>
         <div class="li2" v-on:click="toSignIn">登陆</div>
         <div class="hide">***</div>
         <el-button type="primary" v-on:click="toSignIn">注册</el-button>
-      </div>
     </div>
     <div class="carousel">
       <video muted v-bind:src="video" v-bind:controls="false" autoplay="autoplay" loop="loop" width="100%"></video>
@@ -207,7 +198,7 @@ Vue.use(Router)
 		z-index: 9999;
 	}
   .header{
-    margin-bottom: 18%;
+    margin-bottom: 38%;
   }
 
 	.signIn {
