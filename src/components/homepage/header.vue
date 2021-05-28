@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-    <div class="menubar" >
+        <div class="menubar" >
       <ul>
         <li class="li">
           <el-dropdown>
@@ -34,16 +34,25 @@
       </ul>
     </div>
     <div class="righted">
+      <div v-if="isLogin">
+        <q-avatar>
+          <img :src=avatarSrc>
+        </q-avatar>
+        <div class="hide">***</div>
+        <div class="li3">{{username}}</div>
+      </div>
+      <div v-else>
         <div class="li2" v-on:click="toSignIn">登陆</div>
         <div class="hide">***</div>
         <el-button type="primary" v-on:click="toSignIn">注册</el-button>
+      </div>
     </div>
     <div class="carousel">
       <video muted v-bind:src="video" v-bind:controls="false" autoplay="autoplay" loop="loop" width="100%"></video>
     </div>
     <div class="signIn" v-show="show">
       <p class="test">Every single moment is unexperienced</p>
-      <el-button type="primary" class="button1" style="font-weight:900; color: white;">现在加入</el-button>
+      <el-button type="primary" class="button1" style="font-weight:900; color: white;" v-on:click="toSignIn">现在加入</el-button>
     </div>
 
   </div>
@@ -105,7 +114,13 @@ Vue.use(Router)
       },
       toSignIn:function (){
         this.$router.push({name:'signIn'})
+      },
+      toRegist:function () {
+          this.$router.push({name:'regist'})
+
       }
+
+
 		},
     watch: {
       windowHeight:function () {
@@ -198,7 +213,7 @@ Vue.use(Router)
 		z-index: 9999;
 	}
   .header{
-    margin-bottom: 38%;
+    margin-bottom: 18%;
   }
 
 	.signIn {

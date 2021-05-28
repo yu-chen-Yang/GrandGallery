@@ -6,10 +6,16 @@ import './quasar'
 import router from "./router/index.js";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import store from './store/index'
+
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
+
+
