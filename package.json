@@ -14,7 +14,8 @@
     "element-ui": "^2.15.1",
     "quasar": "^1.15.10",
     "vue": "^2.6.11",
-    "vue-axios": "^3.2.4"
+    "vue-axios": "^3.2.4",
+    "vue-simple-password-meter": "^0.0.24"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

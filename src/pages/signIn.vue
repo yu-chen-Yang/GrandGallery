@@ -30,7 +30,6 @@
     import Vue from 'vue'
     import axios from 'axios'
     import VueAxios from 'vue-axios'
-    import passwordMeter from "vue-simple-password-meter";
 
     Vue.use(VueAxios, axios)
 
@@ -53,6 +52,7 @@
                         pwd:this.pwd,
                     }
                 }).then(function (response){
+                  console.log(response);
 
                 })
             },

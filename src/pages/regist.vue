@@ -58,7 +58,7 @@ export default {
                     pwd:this.pwd,
                 }
             }).then(function (response){
-
+              console.log(response)
             })
         },
         confirm(){
@@ -87,7 +87,7 @@ export default {
             }
             var numasc = 0;
             var charasc = 0;
-            var otherasc = 0;
+            //var otherasc = 0;
             if(0==this.pwd.length){
                 this.msg= "密码不能为空";
             }else if(this.pwd.length<8||this.pwd.length>18){

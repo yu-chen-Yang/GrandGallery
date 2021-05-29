@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import homepage from "../pages/homepage";
 import signIn from "../pages/signIn";
 import regist from "../pages/regist";
-import mainPage from "../pages/mainPage";
 
 Vue.use(VueRouter)
 
