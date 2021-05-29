@@ -68,8 +68,8 @@
                     return false;
 
                 }
-
-                this.$router.push({name:'homepage'})
+      this.$router.push({name:'homepage'})
+      this.$router.push({name:'Personalpage'})
 
             },
 
@@ -216,6 +216,5 @@
         margin-bottom: 10px;
         margin-top: 10px;
     }
-
 
 </style>
