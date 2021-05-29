@@ -6,6 +6,7 @@
 export default {
   name: "mainPage",
 
+
 }
 </script>
 
