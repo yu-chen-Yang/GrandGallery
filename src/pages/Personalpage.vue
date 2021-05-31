@@ -5,9 +5,8 @@
             <div class="portrial">
 
                 <q-avatar size="180px" class="myportrial" >
-                    <img src="https://cdn.quasar.dev/img/avatar.png">
+                    <img src="../assets/cursorPineapple.png">
                 </q-avatar>
-                <div><q-btn color="primary" class="g-button" v-on:click="tofollow" label="登录"/></div>
                 <h1>yyc</h1>
                 <h2>{{position}}  |  关注 {{follows}}| 粉丝 {{followers}}</h2>
             </div>
@@ -43,7 +42,8 @@
         },
         methods:{
             tofollow:function () {
-                this.$router.push({name:'testpage'})
+                this.$router.push({name:'information'})
+
             }
         },
         watch:{
@@ -78,6 +78,7 @@
         text-align: center;
     }
     .myportrial{
+        background: white;
     }
     h1{
         margin-top: 0px;

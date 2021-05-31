@@ -34,33 +34,20 @@
             </ul>
         </div>
         <div class="righted">
-            <div >
+            <div v-if="isLogin">
+                <q-avatar>
+                    <img :src=avatarSrc>
+                </q-avatar>
                 <div class="hide">***</div>
-                <div class="li3">{{username}}</div>
-                <q-select         filled
-                                  v-model="model"
-                                  :options="options"
-                                  option-value="id"
-                                  option-label="desc"
-                                  option-disable="inactive"
-                                  @click="goperson"
-                                  emit-value
-                                  map-options
-                                  :label="myname"
-                                  style="min-width: 250px; max-width: 300px">
-                    <template v-slot:before>
-                        <q-avatar>
-                            <img src="https://cdn.quasar.dev/img/avatar5.jpg">
-                        </q-avatar>
-                    </template>
-
-
-
-
-                </q-select>
+                <div class="li3"  v-on:click="goperson">{{username}}</div>
+                <div class="li4" v-on:click="toInfo">个人信息</div>
 
             </div>
-
+            <div v-else>
+                <div class="li2" v-on:click="toSignIn">登陆</div>
+                <div class="hide">***</div>
+                <el-button type="primary" v-on:click="toSignIn">注册</el-button>
+            </div>
         </div>
 
 
@@ -74,8 +61,6 @@
     export default {
         props:{
             userid:Number,
-            isLogin:Boolean,
-            username:String,
             userTitle:String,
             level:Number,
         },
@@ -111,24 +96,7 @@
             windowWidth: "",
             username: "YYC",
             myname:"杨宇成",
-            options: [
-                {
-                    id: 'goog',
-                    desc: '个人信息'
-                },
-                {
-                    id: 'fb',
-                    desc: 'Facebook'
-                },
-                {
-                    id: 'twt',
-                    desc: 'Twitter'
-                },
-                {
-                    id: 'app',
-                    desc: 'Apple'
-                },
-            ],
+            isLogin:true,
             dense: false,
             denseOpts: false
         }),
@@ -152,9 +120,12 @@
             },
             goperson:function () {
 
-                    this.$router.push({name:'regist'})
-
+                    this.$router.push({name:'Personalpage'})
+            },
+            toInfo:function () {
+                this.$router.push({name:'information'})
             }
+
 
 
 
@@ -217,6 +188,14 @@
         display: inline;
         line-height: 1.25;
         letter-spacing: normal;
+    }
+    .li4{
+        margin-left: 100px;
+        display: inline;
+        cursor: pointer;
+        color:#027BE3;
+        border: white;
+        font-size: large;
     }
     .hide{
         font-size: 1.3rem;

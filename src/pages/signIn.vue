@@ -4,7 +4,7 @@
 
             <h3>登录</h3>
             <h4>立即开启美好生活！</h4>
-            <q-input  outlined  label="请输入用户名" class="name" type="text"  v-model="UserName" />
+            <q-input  outlined  label="请输入用户名" class="name" type="text"  v-model="id" />
 
             <q-input outlined  type="password" label="请输入密码" v-model="pwd" />
 
@@ -13,7 +13,7 @@
             <div v-show="isShow">
                 <h6>{{msg}}</h6>
             </div>
-            <q-btn color="primary" class="g-button" v-on:click="confirm" label="登录"/>
+            <q-btn color="primary" class="g-button" v-on:click="checkLogin" label="登录"/>
 
 
             <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
@@ -30,6 +30,7 @@
     import Vue from 'vue'
     import axios from 'axios'
     import VueAxios from 'vue-axios'
+    import passwordMeter from "vue-simple-password-meter";
 
     Vue.use(VueAxios, axios)
 
@@ -46,29 +47,36 @@
         }),
         methods:{
             checkLogin:function(){
-                this.$axios.post('http://127.0.0.1:8098//user/login',{
+                axios.post('/user/login',{
                     params:{
-                        userId:this.id,
-                        password:this.pwd,
+                        id:this.id,
+                        pwd:this.pwd,
                     }
                 }).then(function (response){
-                  console.log(response);
+                    if (response && response.code == 200) {
+
+                        this.$message.success("登录成功")
+
+                    }
+
                 })
             },
             confirm(){
-                if(this.UserName === ""){
+                if(this.UserName == ""){
                     this.isShow=true;
                     this.msg="用户名不能为空";
                     return false;
                 }
-                else if(this.pwd === ""){
+                else if(this.pwd == ""){
                     this.isShow=true;
                     this.msg="密码不能为空";
                     return false;
 
                 }
-      this.$router.push({name:'homepage'})
-      this.$router.push({name:'Personalpage'})
+                this.$store.commit('setIsLogin',true)
+                this.$router.push({name:'homepage'})
+                this.$router.push({name:'Personalpage'})
+
             },
 
 

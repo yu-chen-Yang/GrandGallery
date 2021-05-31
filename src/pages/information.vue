@@ -1,6 +1,6 @@
 <template>
     <div id="information">
-        <hometitle class="header"/>
+        <hometitle class="header"></hometitle>
         <form id="infocard">
             <div id="info" style="float:left" >
 
@@ -76,6 +76,7 @@
     import VueAxios from 'vue-axios'
     import passwordMeter from "vue-simple-password-meter";
     import store from "../store/index"
+    import homeheader from "../components/homepage/header";
 
     Vue.use(VueAxios, axios)
     export default {
@@ -92,7 +93,7 @@
         },
         data(){
             return{　　
-                imgsrc:require('../assets/back/head1.jpg'),         //用户没有上传图片的默认头像
+                imgsrc:require('../assets/cursorPineapple.png'),         //用户没有上传图片的默认头像
                 headTip: "点击上传头像",
                 gender: 'male',
                 myphone:this.$store.state.phone,
@@ -159,7 +160,7 @@
 
 }
 .header{
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 #infocard{
     margin: auto;
