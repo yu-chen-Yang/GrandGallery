@@ -46,23 +46,22 @@
         }),
         methods:{
             checkLogin:function(){
-                axios.get('/usr',{
+                this.$axios.post('http://127.0.0.1:8098//user/login',{
                     params:{
-                        id:this.id,
-                        pwd:this.pwd,
+                        userId:this.id,
+                        password:this.pwd,
                     }
                 }).then(function (response){
                   console.log(response);
-
                 })
             },
             confirm(){
-                if(this.UserName == ""){
+                if(this.UserName === ""){
                     this.isShow=true;
                     this.msg="用户名不能为空";
                     return false;
                 }
-                else if(this.pwd == ""){
+                else if(this.pwd === ""){
                     this.isShow=true;
                     this.msg="密码不能为空";
                     return false;
@@ -70,7 +69,6 @@
                 }
       this.$router.push({name:'homepage'})
       this.$router.push({name:'Personalpage'})
-
             },
 
 

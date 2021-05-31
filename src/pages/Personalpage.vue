@@ -43,8 +43,7 @@
         },
         methods:{
             tofollow:function () {
-                this.$router.push({name:'information'})
-
+                this.$router.push({name:'testpage'})
             }
         },
         watch:{
