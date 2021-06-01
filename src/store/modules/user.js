@@ -47,6 +47,10 @@ const actions = {
 
 //真正用于修改数据的方法
 const mutations = {
+    isLogin(state,userId){
+      state.UID=userId;
+      state.isLogin=true;
+    },
     login(state,user){
         state.IsLogin=true;
         state.email=user.email;

@@ -29,13 +29,8 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
-    import VueAxios from 'vue-axios'
+
     import passwordMeter from "vue-simple-password-meter";
-
-    Vue.use(VueAxios, axios)
-
 export default {
     name: "regist",
     components: { passwordMeter },
@@ -50,7 +45,7 @@ export default {
     }),
     methods:{
         checkLogin:function(){
-            axios.get('/usr',{
+            this.$axios.get('/usr',{
                 params:{
                     id:this.id,
                     pwd:this.pwd,

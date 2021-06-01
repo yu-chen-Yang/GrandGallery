@@ -101,7 +101,6 @@
             denseOpts: false
         }),
         mounted: function() {
-            console.log(this.show)
             setTimeout("", 2000)
             this.show = true;
             // <!--把window.onresize事件挂在到mounted函数上-->

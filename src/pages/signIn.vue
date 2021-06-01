@@ -46,6 +46,11 @@
                         password:this.pwd,
                 }).then(res=>{
                   console.log(res);
+                  this.$store.state.UID=this.id;
+                  this.$store.state.isLogin=true;
+                  console.log(this.$store.state.isLogin);
+                  this.$router.push({name:'homepage'})
+                  this.$router.push({name:'Personalpage'})
                 }).catch(err=>{
                   alert(err);
                 })
@@ -62,9 +67,6 @@
                     return false;
 
                 }
-                this.$store.commit('setIsLogin',true)
-                this.$router.push({name:'homepage'})
-                this.$router.push({name:'Personalpage'})
             },
         },
     }

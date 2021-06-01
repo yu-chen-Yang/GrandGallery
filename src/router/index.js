@@ -4,8 +4,7 @@ import homepage from "../pages/homepage";
 import signIn from "../pages/signIn";
 import regist from "../pages/regist";
 import mainPage from "../pages/mainPage";
-
-import Personalpage from "../pages/Personalpage";
+import Personalpage from "../pages/personalpage";
 import testpage from "../pages/testpage";
 import hometitle from "../components/homepage/card/hometitle";
 import information from "../pages/information";
@@ -20,6 +19,11 @@ export default new VueRouter({
             path:"/",
             component: homepage,
             name:"homepage"
+        },
+        {
+          path:"/mainPage",
+          component:mainPage,
+          name:"mainPage"
         },
         {
             path:"/signIn",

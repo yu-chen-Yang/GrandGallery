@@ -16,15 +16,6 @@
 </template>
 
 <script>
-    import store from "../store/index"
-    const Counter = {
-        template:'<div>{{count}}</div>',
-        computed:{
-            count(){
-                return this.$store.state.phone;
-            }
-        }
-    }
 
 
     export default {

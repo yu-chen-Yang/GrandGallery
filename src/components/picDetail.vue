@@ -1,15 +1,14 @@
 <template>
-  <div class="q-pa-md q-gutter-sm ">
-    <q-card style="width: available; margin-top: 15px; height: 45rem" >
+  <div>
+    <q-card style="width: available; height: 50rem" >
       <div class="row">
       <div class="col-9" style="border-color: #21BA45;border-width: 10px;text-align: center;align-items: center;">
         <q-card-section>
-          <q-img :src="src" style="max-height: 43rem;max-width: 50rem;margin: auto; z-index: 999" contain/>
+          <q-img :src="imgUrl" style="max-height: 43rem;max-width: 50rem;margin-top: auto;margin-bottom:auto; z-index: 999" contain/>
         </q-card-section>
       </div>
-        <div class="col-3">
-         <q-card style="height: 250px; margin: 1px" >
-           ajsflajskfasdf
+        <div class="col-3" style="border-left:solid 1px lightgrey;">
+         <div style="height: 250px; margin: 1px;" >
            <div class="row">
            <q-avatar style="margin: 15px" size="4rem">
              <img  :src=avator>
@@ -29,11 +28,11 @@
            </div>
            <q-separator/>
            <div class="decription">
-
            </div>
-         </q-card>
-          <q-card style="margin-top: 2rem; height: 27rem; overflow: scroll"  >
-            <div class="row" style="background-color: 	#DCDCDC;">
+         </div>
+          <div style="margin-top: 2rem; height: 27rem; overflow: scroll; margin-right: 1px;margin-left: 1px;width: 30rem;"  >
+            <q-separator/>
+            <div class="row" style="margin-right: 1px; background-color: 	whitesmoke">
               <q-input
                   outlined
                   v-model="readerId"
@@ -46,11 +45,16 @@
             <q-separator style="margin-bottom: 2rem"/>
             <conment v-for="item in conments" :key="item.name" :sentence="item.sentence" :uname="item.name"/>
 
-          </q-card>
+          </div>
         </div>
       </div>
     </q-card>
+    <q-dialog v-model="show" full-width full-height>
+      <pic-detail  :img-url="this.imgUrl" :pic-id="this.picId"/>
+    </q-dialog>
+
   </div>
+
 </template>
 
 <script>
@@ -60,10 +64,14 @@ export default {
   components:{
     conment,
   },
+  props:{
+    authorId:String,
+    imgUrl:URL,
+    picId:String,
+  },
   data () {
     return {
       show: false,
-      picId:"",
       conments:[{name:"yyc",sentence:"拍的好啊"},{name:"zjh",sentence: "真不错"}],
 
       userInfo:{name:"cjq",title:"big FW"},
