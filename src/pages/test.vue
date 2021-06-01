@@ -11,6 +11,7 @@
         <h3>{{myabout}}</h3>
         <h3>{{myemail}}</h3>
         <h3>{{mynickname}}</h3>
+        <h4>{{isLogin}}</h4>
     </div>
 </template>
 
@@ -36,7 +37,8 @@
                 mybirthday:this.$store.state.birthday,
                 mynickname:this.$store.state.nickname,
                 myemail:this.$store.state.email,
-                myabout:this.$store.state.about
+                myabout:this.$store.state.about,
+                isLogin:this.$store.state.IsLogin
             }
         },
         computed:{

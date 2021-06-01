@@ -20,7 +20,7 @@ export default {
   data () {
     return{
       userid:-1,
-      isLogin:true,
+      isLogin:false,
       username:"yyc",
       userTitle:"",
       level:0

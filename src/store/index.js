@@ -1,17 +1,52 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import user from "./modules/user";
-import VueXAlong from 'vuex-along';
-//import {ionMdPie} from "@quasar/extras/ionicons-v4";
-Vue.use(Vuex);
+import Vue from "vue"
+import Vuex from "vuex"
+Vue.use(Vuex)
+import createVuexAlong from 'vuex-along'
 
 export default new Vuex.Store({
-    modules:{
-        user
+    state:{
+        count:999,
+        nickname:"yyc",
+        phone:"1384389438",
+        about:"yycshigedashabi哈哈哈哈哈哈",
+        UID:"0001",
+        email:"yycsb@163.com",
+        birthday:"20001438",
+        IsLogin:false
     },
-    plugins: [VueXAlong({
-        name: 'store',   //存放在localStroage或者sessionStroage 中的名字
-        local: false,   //是否存放在local中 false 不存放 如果存放按照下面session的配置
-        session: { list: [], isFilter: true } //如果值不为false 那么可以传递对象 其中 当isFilter设置为true时， list 数组中的值就会被过滤调,这些值不会存放在seesion或者local中
-    })]
+    mutations:{
+        increment: state => state.count ++,
+        decrement:state => state.count --,
+        setPhone(state,a){
+            state.phone = a
+        },
+        setEmail(state,a){
+            state.email = a
+        },
+        setNickname(state,a){
+            state.nickname = a
+        },
+        setBirthday(state,a){
+            state.birthday = a
+        },
+        setAbout(state,a){
+            state.about = a
+        },
+        setIsLogin(state,a){
+            state.IsLogin = true;
+        },
+        setNotLogin(state,a){
+            state.IsLogin = false;
+        }
+    },
+    getters:{
+
+    },
+    actions:{
+
+    },
+    modules:{
+
+    },
+    plugins:[createVuexAlong()]
 })
