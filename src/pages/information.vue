@@ -13,7 +13,6 @@
                     <div class="border"  @click="uploadIMg">{{headTip}}<img :src="imgsrc" class="imgDiv"></div>
                     <input type="file"  id="upload" style="display:none;" accept="image/gif,image/jpeg,image/png,image/jpg" @change="freshImg"/>
                 </div>
-
                 <div class="clear"></div>
                 <label class="checkinfo">生日</label>
                 <q-input class="q-input" outlined type="text" v-model="mybirthday"

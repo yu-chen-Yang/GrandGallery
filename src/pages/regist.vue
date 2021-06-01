@@ -18,8 +18,6 @@
                 <h6>{{msg}}</h6>
             </div>
             <q-btn color="primary" class="g-button" v-on:click="confirm" label="注册"/>
-
-
             <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
             <p>
                 <router-link to="/signIn">已有账号？马上登录</router-link>
@@ -58,7 +56,6 @@ export default {
                     pwd:this.pwd,
                 }
             }).then(function (response){
-
             })
         },
         confirm(){
@@ -278,6 +275,4 @@ export default {
         margin-bottom: 10px;
         margin-top: 10px;
     }
-
-
 </style>

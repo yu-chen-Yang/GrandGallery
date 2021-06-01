@@ -9,6 +9,9 @@ Vue.prototype.$axios=axios
 import router from "./router/index";
 import {store} from "./store/index"
 Vue.use(ElementUI)
+
+
+
 new Vue({
   router,
   store,

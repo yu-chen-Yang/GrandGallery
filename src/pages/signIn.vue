@@ -27,31 +27,23 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
-    import VueAxios from 'vue-axios'
-    import passwordMeter from "vue-simple-password-meter";
-
-    Vue.use(VueAxios, axios)
-
     export default {
         name: "signin",
 
         data:()=>({
             UserName:"",
             pwd:"",
+            id:0,
             com_pwd:"",
             isShow: false,
             msg:"",
-            score:null
+            score:null,
         }),
         methods:{
             checkLogin:function(){
-                axios.post('/user/login',{
-                    params:{
-                        id:this.id,
-                        pwd:this.pwd,
-                    }
+                this.$axios.post("http://127.0.0.1:8098/user/login",{
+                        userId:this.id,
+                        password:this.pwd,
                 }).then(res=>{
                   console.log(res);
                 }).catch(err=>{
