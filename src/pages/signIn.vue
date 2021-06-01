@@ -52,13 +52,10 @@
                         id:this.id,
                         pwd:this.pwd,
                     }
-                }).then(function (response){
-                    if (response && response.code == 200) {
-
-                        this.$message.success("登录成功")
-
-                    }
-
+                }).then(res=>{
+                  console.log(res);
+                }).catch(err=>{
+                  alert(err);
                 })
             },
             confirm(){
@@ -76,12 +73,8 @@
                 this.$store.commit('setIsLogin',true)
                 this.$router.push({name:'homepage'})
                 this.$router.push({name:'Personalpage'})
-
             },
-
-
-
-        }
+        },
     }
 </script>
 

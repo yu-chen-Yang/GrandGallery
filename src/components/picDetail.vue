@@ -55,7 +55,6 @@
 
 <script>
 import conment from "./conment";
-
 export default {
   name: "picDetail",
   components:{

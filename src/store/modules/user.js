@@ -1,44 +1,77 @@
-import Vue from "vue"
-import Vuex from "vuex"
-Vue.use(Vuex)
-import createVuexAlong from 'vuex-along'
+const state = {
+    count:999,
+    nickname:"yyc",
+    phone:"1384389438",
+    about:"yycshigedashabi哈哈哈哈哈哈",
+    UID:"0001",
+    email:"yycsb@163.com",
+    birthday:"20001438",
+    isLogin:false,
+}
 
-export default new Vuex.Store({
-    state:{
-        count:999,
-        nickname:"yyc",
-        phone:"1384389438",
-        about:"yycshigedashabi哈哈哈哈哈哈",
-        UID:"0001",
-        email:"yycsb@163.com",
-        birthday:"20001438"
+//定义getters
+const getters = {
+    UID:state=>{
+        return state.UID;
     },
-    mutations:{
-        increment: state => state.count ++,
-        decrement:state => state.count --,
-        setPhone(state,a){
-            state.phone = a
-        },
-        setEmail(state,a){
-            state.email = a
-        },
-        setNickname(state,a){
-            state.nickname = a
-        },
-        setBirthday(state,a){
-            state.birthday = a
-        },
-        setAbout(state,a){
-            state.about = a
-        },
+    nickname:state=>{
+        return state.nickname;
     },
-    getters:{
+    phone:state=>{
+        return state.phone;
     },
-    actions:{
+    about:state=>{
+        return state.about;
+    },
+    email:state=>{
+        return state.email;
+    },
+    isLogin:state=>{
+        return state.isLogin;
+    },
+    birthday:state=>{
+        return state.birthday;
+    }
 
-    },
-    modules:{
+}
 
+//定义actions映射
+const actions = {
+    logIn({commit},readers){
+        commit("login",readers);
     },
-    plugins:[createVuexAlong()]
-})
+    logOut({commit}){
+        commit('logout')
+    }
+}
+
+//真正用于修改数据的方法
+const mutations = {
+    login(state,user){
+        state.IsLogin=true;
+        state.email=user.email;
+        state.UID=user.UID;
+        state.nickname=user.nickname;
+        state.birthday=user.birthday;
+        state.phone=user.phone;
+        state.about=user.about;
+    },
+    logOut(state) {
+        state.IsLogin=false;
+        state.email="";
+        state.UID="";
+        state.nickname="";
+        state.birthday="";
+        state.phone="";
+        state.about="";
+    }
+
+}
+
+//导出所有配置
+export default {
+    state,
+    getters,
+    actions,
+    mutations
+};
