@@ -18,7 +18,8 @@
     "vue-router": "^3.5.1",
     "vue-simple-password-meter": "^0.0.24",
     "vuex": "^3.6.2",
-    "vuex-along": "^1.2.13"
+    "vuex-along": "^1.2.13",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

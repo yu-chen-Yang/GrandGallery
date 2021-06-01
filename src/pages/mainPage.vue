@@ -26,27 +26,10 @@
           </template>
         </q-input>
 
-        <q-btn v-if="$q.screen.gt.xs" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
+        <q-btn v-if="$q.screen.gt.xs"  @click="upload=true" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
 
         <q-space />
 
-        <div class="q-gutter-sm row items-center no-wrap">
-          <q-btn round dense flat color="text-grey-7" icon="apps">
-            <q-tooltip>Google Apps</q-tooltip>
-          </q-btn>
-          <q-btn round dense flat color="grey-8" icon="notifications">
-            <q-badge color="red" text-color="white" floating>
-              2
-            </q-badge>
-            <q-tooltip>Notifications</q-tooltip>
-          </q-btn>
-          <q-btn round flat>
-            <q-avatar size="26px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-            </q-avatar>
-            <q-tooltip>Account</q-tooltip>
-          </q-btn>
-        </div>
       </q-toolbar>
     </q-header>
 
@@ -58,13 +41,6 @@
         @click="leftDrawerOpen = false"
     >
       <q-scroll-area class="fit">
-        <q-toolbar class="GPL__toolbar">
-          <q-toolbar-title class="row items-center text-grey-8">
-            <img class="q-pl-md" src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg">
-            <span class="q-ml-sm">Photos</span>
-          </q-toolbar-title>
-        </q-toolbar>
-
         <q-list padding>
           <q-item v-for="link in links1" :key="link.text" clickable class="GPL__drawer-item">
             <q-item-section avatar>
@@ -112,7 +88,7 @@
             </div>
           </q-card>
 
-          <q-card color="white" bordered style="height: 15rem; width: 24rem; margin-left:auto; margin-right: auto;margin-top: 2rem">
+          <q-card color="white" bordered style="cursor: pointer; height: 15rem; width: 24rem; margin-left:auto; margin-right: auto;margin-top: 2rem">
             <div class="row justify-between">
                 <q-parallax style="height: 12rem">
                   <template v-slot:media>
@@ -128,7 +104,7 @@
             </div>
           </q-card>
 
-          <q-card color="white" bordered style="height: 15rem; width: 24rem; margin-left:auto; margin-right: auto;margin-top: 2rem">
+          <q-card color="white" bordered style="cursor: pointer;height: 15rem; width: 24rem; margin-left:auto; margin-right: auto;margin-top: 2rem">
             <div class="row justify-between">
               <q-parallax
                   src="http://grandgallery-image.test.upcdn.net/material1.jpg"
@@ -141,12 +117,27 @@
 
         </div>
         <div class="col-6">
-          <card :img-src=pic[0].pictureUrl />
+          <div v-for="item in pic" :key="item.pictureId">
+            <card :img-src="item.pictureUrl" :img-id="item.pictureId" :description="item.description" :author="item.uploaderName"
+            :comments="item.commentCount" :favor="item.favouritesCount" :likes="likesCount" @showDetail="checkDetail"/>
+          </div>
+
         </div>
       </div>
     </q-page-container>
+    <q-dialog v-model="upload" full-height full-width>
+      <q-uploader
+          style="max-width: 30rem; max-height: 20rem"
+          url="http://localhost:4444/upload"
+          label="Restricted to images"
+          multiple
+          accept=".jpg, image/*"
+          @rejected="onRejected"
+      />
+    </q-dialog>
+
     <q-dialog v-model="detail" full-height full-width>
-      <pic-detail :pic-id="pic[1].pictureId" :img-url="pic[1].pictureUrl"/>
+      <pic-detail :pic-id="checkid" :img-url="checkurl"/>
     </q-dialog>
   </q-layout>
 </div>
@@ -159,7 +150,11 @@ export default {
   name: "mainPage",
   components: {Card, PicDetail},
   created() {
-    console.log(this.$store.state.isLogin);
+    if(this.$store.getters.isLogin===false){
+      this.$router.push({name:"signIn"});
+    }
+    console.log(this.$store.getters.UID);
+    console.log(this.$store.getters.isLogin);
     this.$axios.get("http://127.0.0.1:8098/picture/getPictures",{
       params:{
         category:"风景",
@@ -170,11 +165,22 @@ export default {
       this.pic=res.data.obj;
     })
   },
+  methods:{
+    checkDetail:function (checkId,checkUrl){
+      this.detail=true;
+      this.checkid=checkId;
+      this.checkurl=checkUrl;
+      alert("555")
+    },
+  },
   data () {
     return {
       leftDrawerOpen: false,
       search: '',
       storage: 0.26,
+      checkid:"",
+      checkurl:URL,
+      upload:false,
       links1: [
         { icon: 'photo', text: 'Photos' },
         { icon: 'photo_album', text: 'Albums' },
