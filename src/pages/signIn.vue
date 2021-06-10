@@ -33,7 +33,7 @@
         data:()=>({
             UserName:"",
             pwd:"",
-            id:0,
+            id:4,
             com_pwd:"",
             isShow: false,
             msg:"",

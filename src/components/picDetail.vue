@@ -14,17 +14,37 @@
              <img  :src=avator>
            </q-avatar>
            <div class="col">
-           <p style="margin: 15px; font-size: 1.2rem;" >{{userInfo.name}}fasf</p>
+           <p style="margin: 15px; font-size: 1rem;" >{{author}}</p>
            <div style="margin: 15px">
-             <q-btn outline color="primary" label="关注" size="sm"/>
+             <div v-if="!isfriend">
+             <q-btn    outline color="primary" label="关注" size="sm" @click="this.addfriend" />
+             </div>
+             <div  v-else>
+               <q-btn   outline color="primary" label="已关注" size="sm" @click="this.deletefriend"/>
+             </div>
+
            </div>
 
            </div>
            </div>
            <q-separator/>
-           <div class="gutter-xl" style="font-size: 1rem; margin-bottom: 1rem">
-             <q-icon class=" icon" name="favorite_border" />5
-             <q-icon name="star_border" class="icon"/>5
+           <div class="row" style=" height: 2rem; text-align: center">
+             <div class="col icon" style=" border-right: lightgray 1px solid">
+               <div v-if="!islike"  style="margin-top: 0.3rem" @click="likepicture">
+               点赞
+               </div>
+               <div v-if="islike" style="margin-top: 0.3rem" @click="dislikepicture">
+                 已点赞
+               </div>
+             </div>
+             <div class="col icon" >
+               <div v-if="!isfavor" style="margin-top: 0.3rem" @click="favouritepicture">
+                 收藏
+               </div>
+               <div v-if="isfavor" style="margin-top: 0.3rem" @click="disfavourite">
+                 已收藏
+               </div>
+             </div>
            </div>
            <q-separator/>
            <div class="decription">
@@ -40,7 +60,7 @@
                   lazy-rules
                   class="q-col makeconment"
               />
-                <q-btn class="q-col" icon="send" type="submit" color="primary" v-on:click="login" size="sm" style="height:2rem;margin-top: 1rem;width: 3rem"/>
+                <q-btn class="q-col" icon="send" type="submit" color="primary" @click="login" size="sm" style="height:2rem;margin-top: 1rem;width: 3rem"/>
             </div>
             <q-separator style="margin-bottom: 2rem"/>
             <conment v-for="item in conments" :key="item.name" :sentence="item.sentence" :uname="item.name"/>
@@ -68,6 +88,7 @@ export default {
     authorId:String,
     imgUrl:URL,
     picId:String,
+    author:String,
   },
   data () {
     return {
@@ -77,23 +98,118 @@ export default {
       userInfo:{name:"cjq",title:"big FW"},
       src:  require('@/assets/hot/3.png'),
       avator: require("@/assets/cursorPineapple.png"),
+      islike:false,
+      isfavor:false,
+      isfriend:false,
+    }
+  },
+  methods:{
+    checkLike:function (){
+      this.$axios.get("http://127.0.0.1:8098/user/isLike",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        this.islike=res.data.obj;
+      })
+    },
+    checkfavourite:function(){
+      this.$axios.get("http://127.0.0.1:8098/user/isFavourite",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        this.isfavor=res.data.obj;
+
+      })
+    },
+    checkfriend:function (){
+      this.$axios.get("http://127.0.0.1:8098/user/isFriend",{
+        params:{
+          userId1:this.$store.getters.UID,
+          userId2:this.authorId,
+        }
+      }).then(res=>{
+        this.isfriend=res.data.obj;
+      })
+    },
+    addfriend:function (){
+      console.log("add")
+      this.$axios.get("http://127.0.0.1:8098/user/addFriend",{
+        params:{
+          userId1:this.$store.getters.UID,
+          userId2:this.authorId,
+        }
+      }).then(res=>{
+        if (res.data.code == 200) {
+          this.isfriend=true
+        }
+      })
+    },
+    deletefriend:function(){
+      this.$axios.get("http://127.0.0.1:8098/user/deleteFriend",{
+        params:{
+          userId1:this.$store.getters.UID,
+          userId2:this.authorId,
+        }
+      }).then(res=>{
+        if (res.data.code == 200) {
+          this.isfriend=false
+        }
+      })
+    },
+    likepicture:function (){
+      this.$axios.post("http://127.0.0.1:8098/user/likePicture",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        if (res.status == 200)
+          this.islike =false
+      })
+    },
+    dislikepicture:function(){
+      this.$axios.post("http://127.0.0.1:8098/user/dislikePicture",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        if (res.status == 200)
+          this.islike=false
+      })
+    },
+    favouritepicture:function (){
+      this.$axios.post("http://127.0.0.1:8098/user/favouritePicture",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        if (res.status == 200)
+          this.isfavor=true
+      })
+    },
+    disfavourite:function (){
+      this.$axios.post("http://127.0.0.1:8098/user/disfavouritePicture",{
+        userId:this.$store.getters.UID,
+        pictureId:this.picId,
+      }).then(res=>{
+        if (res.status == 200)
+          this.isfavor=false
+      })
     }
   },
   computed:{
     Height() {
       return 750+'px';
-    }
-  }
+    },
+
+
+  },
+  created() {
+    this.checkfriend();
+    this.checkfavourite();
+    this.checkLike();
+  },
 }
 </script>
 
 <style scoped>
 
-.icon {
-  font-size: 2.5rem;
-  margin-top: 1rem;
-  margin-left: 2rem;
-}
 .icon:hover,
 .server-table i.el-tooltip:hover {
   cursor: pointer;

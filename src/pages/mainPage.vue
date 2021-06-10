@@ -3,15 +3,6 @@
   <q-layout view="lHh Lpr fff" class="bg-grey-1">
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
       <q-toolbar class="GPL__toolbar" style="height: 64px">
-        <q-btn
-            flat
-            dense
-            round
-            @click="leftDrawerOpen = !leftDrawerOpen"
-            aria-label="Menu"
-            icon="menu"
-            class="q-mx-md"
-        />
 
         <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
           <span class="q-ml-sm">The Grand Gallery</span>
@@ -33,38 +24,6 @@
       </q-toolbar>
     </q-header>
 
-
-    <q-drawer
-        v-model="leftDrawerOpen"
-        bordered
-        behavior="mobile"
-        @click="leftDrawerOpen = false"
-    >
-      <q-scroll-area class="fit">
-        <q-list padding>
-          <q-item v-for="link in links1" :key="link.text" clickable class="GPL__drawer-item">
-            <q-item-section avatar>
-              <q-icon :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-separator class="q-my-md" />
-          <q-item clickable class="GPL__drawer-item GPL__drawer-item--storage">
-            <q-item-section avatar>
-              <q-icon name="cloud" />
-            </q-item-section>
-            <q-item-section top>
-              <q-item-label>Storage</q-item-label>
-              <q-linear-progress :value="storage" class="q-my-sm" />
-              <q-item-label caption>2.6 GB of 15 GB</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-scroll-area>
-    </q-drawer>
-
     <q-page-container class="GPL__page-container" style="background-color: WhiteSmoke">
       <div class="row">
         <div class="col-4">
@@ -74,14 +33,14 @@
               <q-avatar style="size: 4rem; margin: 1.5rem">
                 <img :src="pic[1].pictureUrl"/>
               </q-avatar>
-              <div class="col" style="font-size: 1.6rem;margin-top: 1.5rem">法国数学家菠萝</div>
+              <div class="col" style="font-size: 1.6rem;margin-top: 1.5rem">{{this.$store.getters.nickname}}</div>
               </div>
             </div>
             <q-separator/>
             <div class="row q-col-gutter-none" style="">
               <div class="col usernuminfo"  style="height:6rem;border-right: lightgray 1px solid; text-align: center;padding-top: 1.3rem">
                 <p style="margin: -0.3rem;font-size: 1.5rem">10</p>粉丝</div>
-              <div class="col usernuminfo"  style="cursor:pointer; height:6rem;border-right: lightgray 1px solid;text-align: center;padding-top: 1.3rem">
+              <div class="col usernuminfo" @click="topersonal()" style="cursor:pointer;  height:6rem;border-right: lightgray 1px solid;text-align: center;padding-top: 1.3rem">
                 <p style="margin: -0.3rem;font-size: 1.5rem">10</p>作品</div>
               <div class="col usernuminfo" style="height:6rem;text-align: center;padding-top: 1.3rem">
                 <p style="margin: -0.3rem;font-size: 1.5rem">10</p>关注</div>
@@ -119,25 +78,30 @@
         <div class="col-6">
           <div v-for="item in pic" :key="item.pictureId">
             <card :img-src="item.pictureUrl" :img-id="item.pictureId" :description="item.description" :author="item.uploaderName"
-            :comments="item.commentCount" :favor="item.favouritesCount" :likes="likesCount" @showDetail="checkDetail"/>
+             :comments="item.commentCount" :favor="item.favouritesCount" :likes="item.likesCount"   :up-id="item.uploaderId"/>
           </div>
 
         </div>
       </div>
     </q-page-container>
-    <q-dialog v-model="upload" full-height full-width>
-      <q-uploader
-          style="max-width: 30rem; max-height: 20rem"
-          url="http://localhost:4444/upload"
-          label="Restricted to images"
-          multiple
-          accept=".jpg, image/*"
-          @rejected="onRejected"
-      />
+    <q-dialog v-model="upload" >
+      <q-card style="height: 30rem;width: 50rem">
+        <div class="row">
+        <q-uploader
+            url="http://localhost:4444/upload"
+            style="max-width: 300px" class="col"
+        />
+          <q-btn label="up" @click="uploadFiles" color="primary" class="col" style="margin:3rem;"/>
+        </div>
+
+        <q-input style="margin: 3rem" outlined />
+        <q-select filled v-model="model" :options="options" label="Filled" />
+      </q-card>
+
     </q-dialog>
 
     <q-dialog v-model="detail" full-height full-width>
-      <pic-detail :pic-id="checkid" :img-url="checkurl"/>
+      <pic-detail :pic-id="checkid" :img-url="checkurl" />
     </q-dialog>
   </q-layout>
 </div>
@@ -154,27 +118,51 @@ export default {
       this.$router.push({name:"signIn"});
     }
     console.log(this.$store.getters.UID);
-    console.log(this.$store.getters.isLogin);
     this.$axios.get("http://127.0.0.1:8098/picture/getPictures",{
       params:{
-        category:"风景",
         page:1,
-        method:""
       }
     }).then(res=>{
+      console.log(res.data.obj);
       this.pic=res.data.obj;
     })
   },
   methods:{
-    checkDetail:function (checkId,checkUrl){
-      this.detail=true;
-      this.checkid=checkId;
-      this.checkurl=checkUrl;
-      alert("555")
+    topersonal:function (){
+      this.$store.commit("setcid",this.$store.getters.UID);
+      this.$router.push({name:'Personalpage'})
     },
+    uploadFiles:function (){
+      this.detail=false;
+      let formdata=new FormData();
+      console.log(this.file);
+      formdata.append('file',this.file);
+      formdata.append('categoryname',"风景");
+      formdata.append('description',"上传测试");
+      formdata.append('picturename',"上传测试");
+      formdata.append("userid",4)
+      this.$axios.post("http://127.0.0.1:8098/picture/uploadPicture",{
+        data:formdata,
+        headers:{"Content-Type":"multipart/form-data"}
+      }).then(res=>{
+        console.log(this.file)
+        console.log(res.code)
+      }).catch(err=>{
+        console.log(err)
+      })
+    },
+    check:function (){
+      console.log(this.upurl);
+    },
+    uploadIMg(){
+      console.log("up");
+    }
   },
   data () {
     return {
+      options:["风景","动物","人物","纪实","新闻"],
+      upurl:"",
+      model:"",
       leftDrawerOpen: false,
       search: '',
       storage: 0.26,

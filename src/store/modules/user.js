@@ -1,9 +1,10 @@
 const state = {
     count:999,
-    nickname:"yyc",
+    nickname:"杨宇辰",
     phone:"1384389438",
     about:"yycshigedashabi哈哈哈哈哈哈",
-    UID:"0001",
+    UID:3,
+    cid:1,
     email:"yycsb@163.com",
     birthday:"20001438",
     isLogin:false,
@@ -11,6 +12,9 @@ const state = {
 
 //定义getters
 const getters = {
+    cid:state=>{
+        return state.cid;
+    },
     UID:state=>{
         return state.UID;
     },
@@ -50,6 +54,9 @@ const mutations = {
     isLogin(state,userId){
       state.UID=userId;
       state.isLogin=true;
+    },
+    setcid(state,userId){
+        state.cid=userId;
     },
     login(state,user){
         state.IsLogin=true;

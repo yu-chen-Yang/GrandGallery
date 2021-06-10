@@ -1,24 +1,25 @@
-﻿<template>
+<template>
   <div>
     <div v-for="item in imgs" v-bind:key="item.id" class="li">
-        <pic v-bind:width="item.width"  v-bind:picscr="item.pictureUrl" v-bind:id="item.pictureId" v-bind:sentence="item.description"/>
+      <pic v-bind:width="item.width" @click="this.detail=true;this.imgId=item.id;this.imgSrc=item.pictureUrl;this.author=item.uploaderName;this.authorid=item.uploaderId;"  v-bind:picscr="item.pictureUrl" v-bind:id="item.pictureId" v-bind:sentence="item.description"/>
     </div>
     <br/>
-
+    <q-dialog v-model="detail" full-height full-width>
+      <pic-detail :pic-id="imgId" :img-url="imgSrc" :author="author"/>
+    </q-dialog>
   </div>
 
 </template>
 
 <script>
 import pic from "../../pic";
-import picDetail from "../../picDetail";
+
 export default {
   components:{
     // eslint-disable-next-line vue/no-unused-components
-    pic,
-    picDetail,
+    pic
   },
-  name: "hot",
+  name: "perfer",
   data:()=>({
     imgs:[],
     width: document.documentElement.clientWidth,
@@ -34,16 +35,12 @@ export default {
     },
   },
   methods:{
-    set:function (pic){
-      this.detail=true;
-      console.log(111);
-      this.imgSrc=pic.picSrc;
-    }
   },
   created() {
     this.$axios.get("http://127.0.0.1:8098/picture/getPictures",{
       params:{
         page:1,
+        categoryName:"风景",
       }
     }).then(res=>{
       console.log(res.data.obj);
